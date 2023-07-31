@@ -194,10 +194,7 @@ run_model <- function(bc, params, ini, times, ice = FALSE, new.diagn = TRUE){
     w0 <- sqrt(shear/rho_e) 
     E0  <- c * w0
     Ri <- ((g/rho)*(abs(rho_e-rho_h)/10))/(w0/(thermDep)^2)
-    
-    print((rho_e ))
-    print((rho_h))
-    
+
     if (rho_e > rho_h){
       dV = 100 * calParam
     } else {
@@ -232,16 +229,6 @@ run_model <- function(bc, params, ini, times, ice = FALSE, new.diagn = TRUE){
           (c1 * Uw(t) * (y[1] - Tair(t))) - # convection
           (Uw(t) * ((es) - (eair))) )# evaporation
     
-    print(dTe)
-    print(Q / Ve * Tin )
-    print(Q / Ve * y[1])
-    print( ((dV * At) / Ve) * (y[2] - y[1]))
-    print( As/(Ve * rho * cp) )
-    print(Jsw(t))
-    print((sigma * (Tair(t) + 273)^4 * (Acoeff + 0.031 * sqrt(eair)) * (1 - Rl)))
-    print((eps * sigma * (y[1] + 273)^4))
-    print((c1 * Uw(t) * (y[1] - Tair(t))) )
-    print((Uw(t) * ((es) - (eair))) )
     }
     # hypolimnion water temperature change per time unit
     dTh <-  ((dV * At) / Vh) * (y[1] - y[2]) 
@@ -258,9 +245,6 @@ run_model <- function(bc, params, ini, times, ice = FALSE, new.diagn = TRUE){
     evap <- - (Uw(t) * ((esat) - (eair)))
     Rh <- RH
     E <- (E0 / (1 + a * Ri)^(3/2))
-    
-    print(dTe)
-    print(dTh)
     
     write.table(matrix(c(qin, qout, mix_e, mix_h, sw, lw, water_lw, conv, evap, Rh,E, Ri, t, ice_param), nrow=1), 
                 'output.txt', append = TRUE,

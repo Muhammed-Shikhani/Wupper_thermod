@@ -32,6 +32,8 @@ times <- seq(from = 1, to = max(as.numeric(boundary$Day) - min(as.numeric(bounda
 # initial water temperatures
 yini <- c(3,3)
 
+parameters[19] = 2
+
 # run the model
 out <- run_model(bc = boundary, params = parameters, ini = yini, times = times, ice = F)
 
